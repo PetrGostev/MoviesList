@@ -12,24 +12,18 @@ class Response(
 @Serializable
 class Multimedia(
     @SerialName("src")
-    val src: String? = null,
-
-    @SerialName("type")
-    val type: String? = null,
+    val src: String?,
 )
 
 @Serializable
 data class ResultsItem(
     @SerialName("multimedia")
-    val multimedia: Multimedia? = null,
+    val multimedia: Multimedia?,
 
     @SerialName("display_title")
-    val displayTitle: String,
+    val displayTitle: String?,
 
     @SerialName("summary_short")
-    val summaryShort: String? = null,
-
-    @SerialName("headline")
-    val headline: String? = null,
+    val summaryShort: String?
 )
 
