@@ -18,7 +18,8 @@ class SplashActivity : AppCompatActivity() {
     private fun startMoviesListActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MovieListActivity::class.java)
-             startActivity(intent)
+            startActivity(intent)
+            finish()
         }, 1000)
     }
 }
