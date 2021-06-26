@@ -20,7 +20,6 @@ class Repository(private val networkModule: NetworkModule) {
     }
 
     suspend fun getResponse(offset: Int): List<ResultsItem>{
-        val i = offset
         return networkModule.moviesApi.getAll(offset).results
     }
 }

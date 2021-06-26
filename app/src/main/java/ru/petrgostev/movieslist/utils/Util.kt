@@ -6,6 +6,7 @@ import ru.petrgostev.movieslist.R
 
 object Page{
     var PAGE_SIZE = 20
+    var START_OFFSET = 0
 }
 
 object ToastUtil {
