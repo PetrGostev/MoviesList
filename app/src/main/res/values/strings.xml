@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MoviesList</string>
+
+    <string name="retry">Retry</string>
+    <string name="no_connection_yet">Что-то пошло не так! Попробуйте еще раз!</string>
+    <string name="error_state">😨 Wooops %s</string>
+</resources>
