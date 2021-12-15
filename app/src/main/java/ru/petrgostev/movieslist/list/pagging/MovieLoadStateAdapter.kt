@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 
+
 class MovieLoadStateAdapter (
     private val retry: () -> Unit
 ) : LoadStateAdapter<MoviesLoadStateViewHolder>() {

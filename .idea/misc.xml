@@ -3,6 +3,16 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/0/MoviesList/app/src/main/res/layout/activity_list.xml" value="0.12613981762917933" />
+        <entry key="..\:/0/MoviesList/app/src/main/res/layout/activity_main.xml" value="0.23822463768115942" />
+        <entry key="..\:/0/MoviesList/app/src/main/res/layout/activity_splash.xml" value="0.16304347826086957" />
+        <entry key="..\:/0/MoviesList/app/src/main/res/layout/fragment_splash.xml" value="0.23822463768115942" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

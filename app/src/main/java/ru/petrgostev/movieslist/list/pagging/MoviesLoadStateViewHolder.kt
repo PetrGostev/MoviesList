@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.petrgostev.movieslist.R
 import ru.petrgostev.movieslist.databinding.LoadStateFooterViewItemBinding
 
+
 class MoviesLoadStateViewHolder (
     private val binding: LoadStateFooterViewItemBinding,
     retry: () -> Unit

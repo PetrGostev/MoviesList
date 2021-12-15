@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import ru.petrgostev.movieslist.R
-import ru.petrgostev.movieslist.ResultsItem
+import ru.petrgostev.movieslist.list.ViewItem.MovieViewItem
 
-class MovieViewsAdapter () : PagingDataAdapter<ResultsItem, MovieViewHolder>(MovieDiffUtilCallback()) {
+
+class MovieViewsAdapter () : PagingDataAdapter<MovieViewItem, MovieViewHolder>(MovieDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(

@@ -1,29 +1,32 @@
 package ru.petrgostev.movieslist
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
+
 class Response(
-    @SerialName("results")
+    @SerializedName("results")
     val results: List<ResultsItem>,
 )
 
-@Serializable
 class Multimedia(
-    @SerialName("src")
-    val src: String?,
+    @SerializedName("src")
+    val src: String? = null,
+
+    @SerializedName("type")
+    val type: String? = null,
 )
 
-@Serializable
 data class ResultsItem(
-    @SerialName("multimedia")
-    val multimedia: Multimedia?,
+    @SerializedName("multimedia")
+    val multimedia: Multimedia? = null,
 
-    @SerialName("display_title")
-    val displayTitle: String?,
+    @SerializedName("display_title")
+    val displayTitle: String,
 
-    @SerialName("summary_short")
-    val summaryShort: String?
+    @SerializedName("summary_short")
+    val summaryShort: String? = null,
+
+    @SerializedName("headline")
+    val headline: String? = null,
 )
 

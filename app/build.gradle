@@ -1,31 +1,65 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
+
+    def apikeyPropertiesFile = rootProject.file("apikey.properties")
+    def apikeyProperties = new Properties()
+    apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
     defaultConfig {
         applicationId "ru.petrgostev.movieslist"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://api.nytimes.com/svc/movies/v2/\""
+            buildConfigField "String", "ORDER_VALUE", "\"by-publication-date\""
+            buildConfigField("String", "THE_MOVIE_DB_API_KEY", apikeyProperties['THE_MOVIE_DB_API_KEY'])
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://api.nytimes.com/svc/movies/v2/\""
+            buildConfigField("String", "THE_MOVIE_DB_API_KEY", apikeyProperties['THE_MOVIE_DB_API_KEY'])
+            buildConfigField "String", "ORDER_VALUE", "\"by-publication-date\""
+
+            applicationIdSuffix ".debug"
         }
     }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        free {
+            dimension 'version'
+            versionNameSuffix " free"
+        }
+        pro {
+            dimension 'version'
+        }
+    }
+
     buildFeatures {
         viewBinding true
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -36,32 +70,36 @@ android {
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
-    implementation "androidx.activity:activity-ktx:1.2.3"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
+    implementation "androidx.activity:activity-ktx:1.4.0"
 
-    implementation "androidx.paging:paging-runtime-ktx:3.0.0-alpha12"
+    implementation "androidx.paging:paging-runtime-ktx:3.1.0"
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
-    implementation 'io.coil-kt:coil:1.1.0'
+    implementation 'io.coil-kt:coil:1.2.1'
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
+
+    implementation("com.google.dagger:hilt-android:2.40.5")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.5")
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
