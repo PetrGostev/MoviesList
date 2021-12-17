@@ -19,8 +19,8 @@ class MoviesPagingSource (
 
             LoadResult.Page(
                 data = moviesEntities,
-                prevKey = if (position == STARTING_PAGE) null else position - 1,
-                nextKey = if (moviesEntities.isEmpty()) null else position + 1
+                prevKey = if (position == STARTING_PAGE) null else position - NETWORK_PAGE_SIZE,
+                nextKey = if (moviesEntities.isEmpty()) null else position + NETWORK_PAGE_SIZE
             )
         } catch (exception: IOException) {
             LoadResult.Error(exception)
@@ -37,5 +37,6 @@ class MoviesPagingSource (
 
     companion object {
         private const val STARTING_PAGE = 1
+        private const val NETWORK_PAGE_SIZE = 20
     }
 }
