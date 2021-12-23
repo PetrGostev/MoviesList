@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
-
+steps {
+    echo 'Compile project'
+    sh "chmod +x gradlew"
+    sh "./gradlew clean build --no-daemon"
+}
 ##############################################################################
 ##
 ##  Gradle start up script for UN*X
