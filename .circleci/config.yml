@@ -5,7 +5,6 @@ jobs:
   build:
 
     docker:
-#      - image: cimg/<language>:<version TAG>
       - image: cimg/ruby:2.7.4
         auth:
           username: mydockerhub-user
@@ -15,7 +14,6 @@ jobs:
       - run: echo "this is the build job"
   test:
     docker:
-#      - image: cimg/<language>:<version TAG>
       - image: cimg/ruby:2.7.4
         auth:
           username: mydockerhub-user
@@ -32,33 +30,3 @@ workflows:
       - test:
           requires:
             - build
-
-#version: 2.1
-#
-#orbs:
-#  android: circleci/android@1.0.3
-#
-#jobs:
-#  build-and-test:
-#    executor:
-#      name: android/android-machine
-#
-#    steps:
-#      - checkout
-#
-#      - android/run-tests:
-#          test-command: ./gradlew lint testDebug --continue
-#
-#      - android/start-emulator-and-run-tests:
-#          test-command: ./gradlew connectedDebugAndroidTest
-#          system-image: system-images;android-25;google_apis;x86
-#
-#      - run:
-#          name: Assemble release build
-#          command: |
-#            ./gradlew assembleRelease
-#
-#workflows:
-#  sample:
-#    jobs:
-#      - build-and-test
